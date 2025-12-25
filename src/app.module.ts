@@ -8,10 +8,13 @@ import { BookService } from './book/book.service';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { EmployeeModule } from './employee/employee.module';
+import { MovieService } from './movie/movie.service';
+import { MovieController } from './movie/movie.controller';
+import { CategoryModule } from './category/category.module';
 
 @Module({
-  imports: [EmployeeModule],
-  controllers: [AppController, ProductController, BookController, UserController],
-  providers: [AppService, ProductService, BookService, UserService],
+  imports: [EmployeeModule, CategoryModule],
+  controllers: [AppController, ProductController, BookController, UserController, MovieController],
+  providers: [AppService, ProductService, BookService, UserService, MovieService],
 })
 export class AppModule {}

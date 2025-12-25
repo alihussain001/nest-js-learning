@@ -51,4 +51,7 @@ export class EmployeeService {
   getEmployeeById(id:number){
     return this.employees.find((employee) => employee.id === id )
   }
+  // getEmployeeByName(name: string){
+  //   return this.employees.filter((employee) => employee.name === name);
+  // }
 }
