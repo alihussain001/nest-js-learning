@@ -13,6 +13,7 @@ export class StudentService {
         return this.students;
     };
 
+
     // get students by id
     getStudentsById(id: number){
         const student = this.students.find((s) => s.id === id);
@@ -31,7 +32,25 @@ export class StudentService {
     };
 
     // update student (PUT) 
-    // updateStudent(id: number, data:{name: string; age: number}){
-        
-    // }
+    updateStudent(id: number, data:{name:string; age:number}){
+        const index = this.students.findIndex((s) => s.id === id);
+        if(index === -1) throw new NotFoundException('Student not found');
+       this.students[index] = {id, ...data};
+       return this.students[index];
+    }
+
+    // update student (PATCH)
+    patchStudent(id: number, data:Partial<{name:string; age:number}>){
+        const student = this.getStudentsById(id)
+        Object.assign(student, data);
+        return student;
+    }
+
+    // Delete student(DELETE)
+    deleteStudent(id:number){
+        const index = this.students.findIndex((s) => s.id === id);
+        if(index === -1) throw new NotFoundException('Student not found');
+        const deleted = this.students.splice(index, 1);
+        return { message: 'Student Deleted', studnet: deleted[0]};
+    }
 }
